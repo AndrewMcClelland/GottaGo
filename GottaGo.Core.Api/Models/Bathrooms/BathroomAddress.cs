@@ -16,5 +16,7 @@ namespace GottaGo.Core.Api.Models.Bathrooms
         public string Country { get; set; }
         public string CountryCode { get; set; }
         public string PostalCode { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
     }
 }
