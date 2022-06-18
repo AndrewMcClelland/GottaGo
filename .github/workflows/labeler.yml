@@ -1,11 +1,9 @@
-# Auto-labels GitHub Issues & PR's based on a configuration file
-
 name: "GitHub Issue & PR Labeler"
 
 on:
   issues:
     types: [opened, edited, closed]
-  pull_requests:
+  pull_request:
     types: [opened, edited, closed]
 
 jobs:
