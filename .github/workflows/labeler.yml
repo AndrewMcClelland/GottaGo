@@ -1,15 +1,13 @@
-# Auto-labels GitHub Issues & PR's based on a configuration file
-
 name: "GitHub Issue & PR Labeler"
 
 on:
   issues:
     types: [opened, edited, closed]
-  pull_requests:
+  pull_request:
     types: [opened, edited, closed]
 
 jobs:
-  triage:
+  label:
     runs-on: ubuntu-latest
     steps:
     - uses: github/issue-labeler@v2.5
