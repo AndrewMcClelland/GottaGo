@@ -3,30 +3,30 @@
 #   - '(LABEL_TAG)'
 
 ACCEPTANCE:
-  - '(ACCEPTANCE)'
+  - '(ACCEPTANCE: )'
 AGGREGATIONS:
-  - '(AGGREGATIONS)'
+  - '(AGGREGATIONS: )'
 BROKERS:
-  - '(BROKER)'
+  - '(BROKERS: )'
 BUG:
-  - '(BUG)'
+  - '(BUG: )'
 CODE RUB:
-  - '(CODE RUB)'
+  - '(CODE RUB: )'
 CONTROLLERS:
-  - '(CONTROLLER)'
+  - '(CONTROLLERS: )'
 DATA:
-  - '(DATA)'
+  - '(DATA: )'
 FOUNDATIONS:
-  - '(FOUNDATION)'
+  - '(FOUNDATIONS: )'
 INFRA:
-  - '(INFRA)'
+  - '(INFRA: )'
 INTEGRATIONS:
-  - '(INTEGRATION)'
+  - '(INTEGRATIONS: )'
 ORCHESTRATIONS:
-  - '(ORCHESTRATION)'
+  - '(ORCHESTRATIONS: )'
 PROCESSINGS:
-  - '(PROCESSING)'
+  - '(PROCESSINGS: )'
 PROVISION:
-  - '(PROVISION)'
+  - '(PROVISION: )'
 UNITS:
-  - '(UNIT)'
+  - '(UNITS: )'
