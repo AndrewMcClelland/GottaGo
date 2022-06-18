@@ -2,6 +2,9 @@
 // Copyright (c) Andrew McClelland.
 // -----------------------------------
 
+using System;
+using Microsoft.Extensions.Logging;
+
 namespace GottaGo.Core.Api.Brokers.Loggings
 {
     public class LoggingBroker : ILoggingBroker
