@@ -2,6 +2,8 @@
 // Copyright (c) Andrew McClelland.
 // -----------------------------------
 
+using System;
+
 namespace GottaGo.Core.Api.Brokers.Loggings
 {
     public interface ILoggingBroker

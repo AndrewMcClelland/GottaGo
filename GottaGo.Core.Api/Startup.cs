@@ -3,6 +3,11 @@
 // -----------------------------------
 
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 namespace GottaGo.Core.Api
@@ -15,11 +20,11 @@ namespace GottaGo.Core.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient();
-            services.AddLogging();
-
             services.AddControllers().AddJsonOptions(options =>
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
+            services.AddHttpClient();
+            services.AddLogging();
 
             services.AddSwaggerGen(c =>
             {
