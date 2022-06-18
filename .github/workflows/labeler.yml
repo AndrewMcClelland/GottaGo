@@ -7,7 +7,7 @@ on:
     types: [opened, edited, closed]
 
 jobs:
-  triage:
+  label:
     runs-on: ubuntu-latest
     steps:
     - uses: github/issue-labeler@v2.5
