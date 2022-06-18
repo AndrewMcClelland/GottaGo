@@ -2,6 +2,9 @@
 // Copyright (c) Andrew McClelland.
 // -----------------------------------
 
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+
 namespace GottaGo.Core.Api
 {
     public class Program
