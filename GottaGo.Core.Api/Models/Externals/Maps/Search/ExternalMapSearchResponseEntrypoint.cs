@@ -13,4 +13,4 @@ public class ExternalMapSearchResponseEntrypoint
 
     [JsonProperty("Position")]
     public ExternalMapSearchResponseLatitudeLongitude Position { get; set; }
-}
+} 
