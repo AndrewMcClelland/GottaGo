@@ -3,6 +3,9 @@
 // -----------------------------------
 
 using System.Text.Json.Serialization;
+using GottaGo.Core.Api.Brokers.Loggings;
+using GottaGo.Core.Api.Brokers.Maps;
+using GottaGo.Core.Api.Brokers.Storages;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +28,7 @@ namespace GottaGo.Core.Api
 
             services.AddHttpClient();
             services.AddLogging();
+            AddBrokers(services);
 
             services.AddSwaggerGen(c =>
             {
@@ -57,6 +61,13 @@ namespace GottaGo.Core.Api
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
+        }
+
+        private static void AddBrokers(IServiceCollection services)
+        {
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
+            services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<IMapBroker, MapBroker>();
         }
     }
 }
