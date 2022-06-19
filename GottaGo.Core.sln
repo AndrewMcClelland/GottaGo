@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32611.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GottaGo.Core.Api", "GottaGo.Core.Api\GottaGo.Core.Api.csproj", "{460DA588-45E8-4119-9EB9-6B0DCFC77743}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GottaGo.Core.Api", "GottaGo.Core.Api\GottaGo.Core.Api.csproj", "{460DA588-45E8-4119-9EB9-6B0DCFC77743}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GottaGo.Core.Api.Tests.Unit", "GottaGo.Core.Api.Tests.Unit\GottaGo.Core.Api.Tests.Unit.csproj", "{86CB2FCF-4AAD-4AED-8544-C9E0D0A98696}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{460DA588-45E8-4119-9EB9-6B0DCFC77743}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{460DA588-45E8-4119-9EB9-6B0DCFC77743}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{460DA588-45E8-4119-9EB9-6B0DCFC77743}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86CB2FCF-4AAD-4AED-8544-C9E0D0A98696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86CB2FCF-4AAD-4AED-8544-C9E0D0A98696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86CB2FCF-4AAD-4AED-8544-C9E0D0A98696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86CB2FCF-4AAD-4AED-8544-C9E0D0A98696}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
