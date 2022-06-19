@@ -5,9 +5,9 @@
 using System.Threading.Tasks;
 using GottaGo.Core.Api.Models.Externals.Maps.Search;
 
-namespace GottaGo.Core.Api.Brokers.Maps
+namespace GottaGo.Core.Api.Brokers.MapApis
 {
-    public partial class MapBroker : IMapBroker
+    public partial class MapApiBroker : IMapApiBroker
     {
         private const string SearchRelativeUrl = "search/";
         private const string AddressRelativeUrl = "address/json?api-version=1.0";

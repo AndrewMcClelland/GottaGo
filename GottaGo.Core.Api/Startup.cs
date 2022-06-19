@@ -4,7 +4,7 @@
 
 using System.Text.Json.Serialization;
 using GottaGo.Core.Api.Brokers.Loggings;
-using GottaGo.Core.Api.Brokers.Maps;
+using GottaGo.Core.Api.Brokers.MapApis;
 using GottaGo.Core.Api.Brokers.Storages;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -67,7 +67,7 @@ namespace GottaGo.Core.Api
         {
             services.AddTransient<ILoggingBroker, LoggingBroker>();
             services.AddTransient<IStorageBroker, StorageBroker>();
-            services.AddTransient<IMapBroker, MapBroker>();
+            services.AddTransient<IMapApiBroker, MapApiBroker>();
         }
     }
 }
