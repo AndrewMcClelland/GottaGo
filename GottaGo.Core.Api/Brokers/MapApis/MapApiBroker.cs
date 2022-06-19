@@ -9,16 +9,16 @@ using GottaGo.Core.Api.Models.Configurations;
 using Microsoft.Extensions.Configuration;
 using RESTFulSense.Clients;
 
-namespace GottaGo.Core.Api.Brokers.Maps
+namespace GottaGo.Core.Api.Brokers.MapApis
 {
-    public partial class MapBroker : IMapBroker
+    public partial class MapApiBroker : IMapApiBroker
     {
         private const string ApiName = "AzureMaps";
         private readonly IRESTFulApiFactoryClient apiClient;
         private readonly HttpClient httpClient;
         private readonly string clientId;
 
-        public MapBroker(HttpClient httpClient, IConfiguration configuration)
+        public MapApiBroker(HttpClient httpClient, IConfiguration configuration)
         {
             this.httpClient = httpClient;
             this.clientId = GetApiClientId(configuration);
