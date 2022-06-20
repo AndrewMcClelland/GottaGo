@@ -2,9 +2,9 @@
 // Copyright (c) Andrew McClelland.
 // -----------------------------------
 
-namespace GottaGo.Core.Api.Brokers.Maps
+namespace GottaGo.Core.Api.Brokers.MapApis
 {
-    public partial interface IMapBroker
+    public partial interface IMapApiBroker
     {
     }
 }
