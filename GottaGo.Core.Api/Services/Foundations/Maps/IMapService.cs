@@ -4,11 +4,12 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GottaGo.Core.Api.Models.Maps;
 
 namespace GottaGo.Core.Api.Services.Foundations.Maps
 {
     public interface IMapService
     {
-        ValueTask<List<>> SearchAddress();
+        ValueTask<List<Address>> SearchAddress();
     }
 }
