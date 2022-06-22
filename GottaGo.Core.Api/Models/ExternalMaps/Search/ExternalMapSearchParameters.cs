@@ -4,7 +4,7 @@
 
 // https://docs.microsoft.com/en-us/rest/api/maps/search/get-search-address#uri-parameters
 
-namespace GottaGo.Core.Api.Models.Externals.Maps.Search
+namespace GottaGo.Core.Api.Models.ExternalMaps.Search
 {
     public class ExternalMapSearchParameters
     {

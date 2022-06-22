@@ -3,7 +3,7 @@
 // -----------------------------------
 
 using System.Threading.Tasks;
-using GottaGo.Core.Api.Models.Externals.Maps.Search;
+using GottaGo.Core.Api.Models.ExternalMaps.Search;
 
 namespace GottaGo.Core.Api.Brokers.MapApis
 {
