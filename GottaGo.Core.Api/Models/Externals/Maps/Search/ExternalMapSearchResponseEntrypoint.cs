@@ -6,11 +6,14 @@
 
 using Newtonsoft.Json;
 
-public class ExternalMapSearchResponseEntrypoint
+namespace GottaGo.Core.Api.Models.Externals.Maps.Search
 {
-    [JsonProperty("Type")]
-    public string Type { get; set; }
+    public class ExternalMapSearchResponseEntrypoint
+    {
+        [JsonProperty("Type")]
+        public string Type { get; set; }
 
-    [JsonProperty("Position")]
-    public ExternalMapSearchResponseLatitudeLongitude Position { get; set; }
-} 
+        [JsonProperty("Position")]
+        public ExternalMapSearchResponseLatitudeLongitude Position { get; set; }
+    }
+}
