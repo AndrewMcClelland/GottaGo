@@ -5,7 +5,7 @@
 using System;
 using GottaGo.Core.Api.Brokers.Loggings;
 using GottaGo.Core.Api.Brokers.MapApis;
-using GottaGo.Core.Api.Models.Externals.Maps.Search;
+using GottaGo.Core.Api.Models.ExternalMaps.Search;
 using GottaGo.Core.Api.Services.Foundations.Maps;
 using Moq;
 using Tynamix.ObjectFiller;
