@@ -26,7 +26,57 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
 
         public async ValueTask<List<Address>> SearchAddress(AddressSearch addressSearch)
         {
-            throw new NotImplementedException();
+            var externalMapSearchParameters = new ExternalMapSearchParameters
+            {
+                Query = addressSearch.Query,
+                Language = addressSearch.Language,
+                CountrySet = String.Join(",", addressSearch.Countries),
+                Latitude = addressSearch.CurrentLocation.Latitude,
+                Longitude = addressSearch.CurrentLocation.Longitude,
+
+            };
+
+            ExternalMapSearchResponse externalMapSearchResponse = await this.mapApiBroker.GetSearchAddressAsync(externalMapSearchParameters);
+
+            List<Address> addresses = externalMapSearchResponse.Responses.Select(response =>
+                new Address
+                {
+                    Type = response.Type,
+                    StreetNumber = response.Address.StreetNumber,
+                    StreetName = response.Address.StreetName,
+                    MunicipalitySubdivision = response.Address.MunicipalitySubdivision,
+                    Municipality = response.Address.Municipality,
+                    CountrySubdivisionName = response.Address.CountrySubdivisionName,
+                    CountrySubdivision = response.Address.CountrySubdivision,
+                    CountrySecondarySubdivision = response.Address.CountrySecondarySubdivision,
+                    CountryTertiarySubdivision = response.Address.CountryTertiarySubdivision,
+                    PostalCode = response.Address.PostalCode,
+                    ExtendedPostalCode = response.Address.ExtendedPostalCode,
+                    Country = response.Address.Country,
+                    CountryCode = response.Address.CountryCode,
+                    CountryCodeISO3 = response.Address.CountryCodeISO3,
+                    FreeformAddress = response.Address.FreeformAddress,
+                    Coordinates = new Coordinates
+                    {
+                        Latitude = response.Position.Latitude,
+                        Longitude = response.Position.Longitude
+                    },
+                    BoundingBox = new BoundingBox
+                    {
+                        TopLeftPoint = new Coordinates
+                        {
+                            Latitude = response.Viewport.TopLeftPoint.Latitude,
+                            Longitude = response.Viewport.TopLeftPoint.Longitude,
+                        },
+                        BottomRightPoint = new Coordinates
+                        {
+                            Latitude = response.Viewport.BottomRightPoint.Latitude,
+                            Longitude = response.Viewport.BottomRightPoint.Longitude,
+                        },
+                    }
+                }).ToList();
+
+            return addresses;
         }
     }
 }
