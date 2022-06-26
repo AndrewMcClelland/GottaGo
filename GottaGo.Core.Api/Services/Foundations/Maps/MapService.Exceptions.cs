@@ -26,6 +26,10 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
             {
                 throw CreateAndLogValidationException(nullAddressSearchException);
             }
+            catch (InvalidMapException mapValidationException)
+            {
+                throw CreateAndLogValidationException(mapValidationException);
+            }
             catch (HttpResponseUrlNotFoundException httpResponseUrlNotFoundException)
             {
                 var failedMapDependencyException =
