@@ -10,6 +10,6 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
 {
     public interface IMapService
     {
-        ValueTask<List<Address>> SearchAddress();
+        ValueTask<List<Address>> SearchAddress(AddressSearch addressSearch);
     }
 }
