@@ -13,7 +13,7 @@ using GottaGo.Core.Api.Models.Maps;
 
 namespace GottaGo.Core.Api.Services.Foundations.Maps
 {
-    public class MapService : IMapService
+    public partial class MapService : IMapService
     {
         private readonly ILoggingBroker loggingBroker;
         private readonly IMapApiBroker mapApiBroker;
@@ -24,7 +24,8 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
             this.mapApiBroker = mapApiBroker;
         }
 
-        public async ValueTask<List<Address>> SearchAddress(AddressSearch addressSearch)
+        public ValueTask<List<Address>> SearchAddress(AddressSearch addressSearch) =>
+        TryCatch(async () =>
         {
             var externalMapSearchParameters = new ExternalMapSearchParameters
             {
@@ -77,6 +78,6 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
                 }).ToList();
 
             return addresses;
-        }
+        });
     }
 }
