@@ -27,6 +27,8 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
         public ValueTask<List<Address>> SearchAddress(AddressSearch addressSearch) =>
         TryCatch(async () =>
         {
+            ValidateAddressSearchOnSearch(addressSearch);
+
             var externalMapSearchParameters = new ExternalMapSearchParameters
             {
                 Query = addressSearch.Query,

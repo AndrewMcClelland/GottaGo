@@ -22,6 +22,10 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
             {
                 return await returningMapsFunction();
             }
+            catch (NullAddressSearchException nullAddressSearchException)
+            {
+                throw CreateAndLogValidationException(nullAddressSearchException);
+            }
             catch (HttpResponseUrlNotFoundException httpResponseUrlNotFoundException)
             {
                 var failedMapDependencyException =
@@ -57,6 +61,14 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
 
                 throw CreateAndLogServiceException(failedMapServiceException);
             }
+        }
+
+        private MapValidationException CreateAndLogValidationException(Xeption exception)
+        {
+            var mapValidationException = new MapValidationException(exception);
+            this.loggingBroker.LogError(mapValidationException);
+
+            return mapValidationException;
         }
 
         private MapDependencyException CreateAndLogCriticalDependencyException(Xeption exception)
