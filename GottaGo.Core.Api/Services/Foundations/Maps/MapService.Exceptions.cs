@@ -2,6 +2,7 @@
 // Copyright (c) Andrew McClelland.
 // -----------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GottaGo.Core.Api.Models.ExternalMaps.Search.Exceptions;
@@ -49,6 +50,13 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
 
                 throw CreateAndLogDependencyException(failedMapDependencyException);
             }
+            catch (Exception exception)
+            {
+                var failedMapServiceException =
+                    new FailedMapServiceException(exception);
+
+                throw CreateAndLogServiceException(failedMapServiceException);
+            }
         }
 
         private MapDependencyException CreateAndLogCriticalDependencyException(Xeption exception)
@@ -65,6 +73,14 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
             this.loggingBroker.LogError(mapDependencyException);
 
             return mapDependencyException;
+        }
+
+        private MapServiceException CreateAndLogServiceException(Xeption exception)
+        {
+            var mapServiceException = new MapServiceException(exception);
+            this.loggingBroker.LogError(mapServiceException);
+
+            return mapServiceException;
         }
     }
 }
