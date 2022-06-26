@@ -42,12 +42,27 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
 
                 throw CreateAndLogCriticalDependencyException(failedMapDependencyException);
             }
+            catch (HttpResponseException httpResponseException)
+            {
+                var failedMapDependencyException =
+                    new FailedMapDependencyException(httpResponseException);
+
+                throw CreateAndLogDependencyException(failedMapDependencyException);
+            }
         }
 
         private MapDependencyException CreateAndLogCriticalDependencyException(Xeption exception)
         {
             var mapDependencyException = new MapDependencyException(exception);
             this.loggingBroker.LogCritical(mapDependencyException);
+
+            return mapDependencyException;
+        }
+
+        private MapDependencyException CreateAndLogDependencyException(Xeption exception)
+        {
+            var mapDependencyException = new MapDependencyException(exception);
+            this.loggingBroker.LogError(mapDependencyException);
 
             return mapDependencyException;
         }

@@ -91,7 +91,7 @@ namespace GottaGo.Core.Api.Tests.Unit.Services.Foundations
                         Times.Once);
 
             this.loggingBrokerMock.Verify(broker =>
-                broker.LogCritical(It.Is(SameExceptionAs(
+                broker.LogError(It.Is(SameExceptionAs(
                     expectedMapDependencyException))),
                         Times.Once);
 
