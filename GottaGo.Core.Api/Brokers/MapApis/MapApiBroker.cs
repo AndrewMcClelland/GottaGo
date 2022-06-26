@@ -17,11 +17,13 @@ namespace GottaGo.Core.Api.Brokers.MapApis
         private readonly IRESTFulApiFactoryClient apiClient;
         private readonly HttpClient httpClient;
         private readonly string clientId;
+        private readonly string apiKey;
 
         public MapApiBroker(HttpClient httpClient, IConfiguration configuration)
         {
             this.httpClient = httpClient;
             this.clientId = GetApiClientId(configuration);
+            this.apiKey = GetApiKey(configuration);
             this.apiClient = GetApiClient(configuration);
         }
 
@@ -33,6 +35,13 @@ namespace GottaGo.Core.Api.Brokers.MapApis
             LocalConfigurations localConfigurations = configuration.Get<LocalConfigurations>();
 
             return localConfigurations.ApiConfigurations[ApiName].ClientId;
+        }
+
+        private static string GetApiKey(IConfiguration configuration)
+        {
+            LocalConfigurations localConfigurations = configuration.Get<LocalConfigurations>();
+
+            return localConfigurations.ApiConfigurations[ApiName].ApiKey;
         }
 
         private IRESTFulApiFactoryClient GetApiClient(IConfiguration configuration)

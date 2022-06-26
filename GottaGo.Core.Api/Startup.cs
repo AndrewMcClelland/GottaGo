@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using GottaGo.Core.Api.Brokers.Loggings;
 using GottaGo.Core.Api.Brokers.MapApis;
 using GottaGo.Core.Api.Brokers.Storages;
+using GottaGo.Core.Api.Services.Foundations.Maps;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,7 @@ namespace GottaGo.Core.Api
             services.AddHttpClient();
             services.AddLogging();
             AddBrokers(services);
+            AddServices(services);
 
             services.AddSwaggerGen(c =>
             {
@@ -69,5 +71,8 @@ namespace GottaGo.Core.Api
             services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<IMapApiBroker, MapApiBroker>();
         }
+
+        private static void AddServices(IServiceCollection services) =>
+            services.AddTransient<IMapService, MapService>();
     }
 }

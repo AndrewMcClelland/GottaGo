@@ -6,7 +6,7 @@
 
 using Newtonsoft.Json;
 
-namespace GottaGo.Core.Api.Models.Externals.Maps.Search
+namespace GottaGo.Core.Api.Models.ExternalMaps.Search
 {
     public class ExternalMapSearchResponse
     {
