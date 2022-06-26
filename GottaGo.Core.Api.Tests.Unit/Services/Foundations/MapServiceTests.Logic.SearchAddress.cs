@@ -91,6 +91,6 @@ namespace GottaGo.Core.Api.Tests.Unit.Services.Foundations
 
             this.mapApiBrokerMock.VerifyNoOtherCalls();
             this.loggingBrokerMock.VerifyNoOtherCalls();
-        } 
+        }
     }
 }

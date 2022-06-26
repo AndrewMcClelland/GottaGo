@@ -8,7 +8,6 @@ using System.Net.Http;
 using GottaGo.Core.Api.Brokers.Loggings;
 using GottaGo.Core.Api.Brokers.MapApis;
 using GottaGo.Core.Api.Models.ExternalMaps.Search;
-using GottaGo.Core.Api.Models.ExternalMaps.Search.Exceptions;
 using GottaGo.Core.Api.Models.Maps;
 using GottaGo.Core.Api.Services.Foundations.Maps;
 using KellermanSoftware.CompareNetObjects;

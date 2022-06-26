@@ -8,8 +8,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
 using GottaGo.Core.Api.Models.ExternalMaps.Search;
-using GottaGo.Core.Api.Models.ExternalMaps.Search.Exceptions;
 using GottaGo.Core.Api.Models.Maps;
+using GottaGo.Core.Api.Models.Maps.Exceptions;
 using Moq;
 using RESTFulSense.Exceptions;
 using Xeptions;
@@ -37,8 +37,8 @@ namespace GottaGo.Core.Api.Tests.Unit.Services.Foundations
 
             // when
             ValueTask<List<Address>> searchAddressTask = this.mapService.SearchAddress(inputAddressSearch);
-            
-            MapDependencyException actualMapDependencyException = 
+
+            MapDependencyException actualMapDependencyException =
                 await Assert.ThrowsAsync<MapDependencyException>(
                     searchAddressTask.AsTask);
 

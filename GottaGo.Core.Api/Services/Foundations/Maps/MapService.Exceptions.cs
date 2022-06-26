@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GottaGo.Core.Api.Models.ExternalMaps.Search.Exceptions;
 using GottaGo.Core.Api.Models.Maps;
+using GottaGo.Core.Api.Models.Maps.Exceptions;
 using RESTFulSense.Exceptions;
 using Xeptions;
 

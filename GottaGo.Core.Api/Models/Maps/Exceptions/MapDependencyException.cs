@@ -4,7 +4,7 @@
 
 using Xeptions;
 
-namespace GottaGo.Core.Api.Models.ExternalMaps.Search.Exceptions
+namespace GottaGo.Core.Api.Models.Maps.Exceptions
 {
     public class MapDependencyException : Xeption
     {
