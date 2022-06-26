@@ -2,14 +2,15 @@
 // Copyright (c) Andrew McClelland.
 // -----------------------------------
 
+using System;
 using Xeptions;
 
 namespace GottaGo.Core.Api.Models.ExternalMaps.Search.Exceptions
 {
-    public class MapDependencyException : Xeption
+    public class FailedMapServiceException : Xeption
     {
-        public MapDependencyException(Xeption innerException)
-            : base(message: "Map dependency error occurred, please contact support.",
+        public FailedMapServiceException(Exception innerException)
+            : base(message: "Failed map service error occurred, please contact support.",
                   innerException)
         { }
     }

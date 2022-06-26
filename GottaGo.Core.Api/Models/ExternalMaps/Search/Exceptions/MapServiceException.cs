@@ -6,10 +6,10 @@ using Xeptions;
 
 namespace GottaGo.Core.Api.Models.ExternalMaps.Search.Exceptions
 {
-    public class MapDependencyException : Xeption
+    public class MapServiceException : Xeption
     {
-        public MapDependencyException(Xeption innerException)
-            : base(message: "Map dependency error occurred, please contact support.",
+        public MapServiceException(Xeption innerException)
+            : base(message: "Map service error occurred, please contact support.",
                   innerException)
         { }
     }

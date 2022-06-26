@@ -2,6 +2,7 @@
 // Copyright (c) Andrew McClelland.
 // -----------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -93,6 +94,45 @@ namespace GottaGo.Core.Api.Tests.Unit.Services.Foundations
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
                     expectedMapDependencyException))),
+                        Times.Once);
+
+            this.mapApiBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public async Task ShouldThrowServiceExceptionOnRetrieveIfErrorOccursAndLogItAsync()
+        {
+            // given
+            var exception = new Exception();
+            var failedMapServiceException = new FailedMapServiceException(exception);
+            var expectedMapServiceException = new MapServiceException(failedMapServiceException);
+
+            AddressSearch inputAddressSearch = CreateRandomAddressSearch();
+
+            mapApiBrokerMock.Setup(broker =>
+                broker.GetSearchAddressAsync(
+                        It.IsAny<ExternalMapSearchParameters>()))
+                            .ThrowsAsync(exception);
+
+            // when
+            ValueTask<List<Address>> searchAddressTask = this.mapService.SearchAddress(inputAddressSearch);
+
+            MapServiceException actualMapServiceException =
+                await Assert.ThrowsAsync<MapServiceException>(
+                    searchAddressTask.AsTask);
+
+            // then
+            actualMapServiceException.Should().BeEquivalentTo(expectedMapServiceException);
+
+            this.mapApiBrokerMock.Verify(broker =>
+                broker.GetSearchAddressAsync(
+                    It.IsAny<ExternalMapSearchParameters>()),
+                        Times.Once);
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedMapServiceException))),
                         Times.Once);
 
             this.mapApiBrokerMock.VerifyNoOtherCalls();
