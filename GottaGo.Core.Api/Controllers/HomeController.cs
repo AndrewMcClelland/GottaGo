@@ -11,6 +11,6 @@ namespace GottaGo.Core.Api.Controllers
     public class HomeController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<string> Get() => Ok("Hello world!");
+        public ActionResult<string> Get() => Ok("Hello from the other side!");
     }
 }
