@@ -38,7 +38,7 @@ namespace GottaGo.Core.Api.Controllers
                 {
                     Query = query,
                     Language = language,
-                    Countries = countries.Split(",").ToList(),
+                    Countries = countries?.Split(",").ToList() ?? new List<string>(),
                     CurrentLocation = new Coordinates
                     {
                         Latitude = latitude,

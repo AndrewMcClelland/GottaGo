@@ -34,12 +34,12 @@ namespace GottaGo.Core.Api.Services.Foundations.Maps
                 Query = addressSearch.Query,
                 Language = addressSearch.Language,
                 CountrySet = String.Join(",", addressSearch.Countries),
-                Latitude = addressSearch.CurrentLocation.Latitude,
-                Longitude = addressSearch.CurrentLocation.Longitude,
-
+                Latitude = addressSearch.CurrentLocation.Latitude?.ToString(),
+                Longitude = addressSearch.CurrentLocation.Longitude?.ToString()
             };
 
-            ExternalMapSearchResponse externalMapSearchResponse = await this.mapApiBroker.GetSearchAddressAsync(externalMapSearchParameters);
+            ExternalMapSearchResponse externalMapSearchResponse =
+                await this.mapApiBroker.GetSearchAddressAsync(externalMapSearchParameters);
 
             List<Address> addresses = externalMapSearchResponse.Responses.Select(response =>
                 new Address
