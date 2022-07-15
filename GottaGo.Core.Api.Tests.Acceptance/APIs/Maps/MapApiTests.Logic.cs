@@ -5,16 +5,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using FluentAssertions;
-using GottaGo.Core.Api.Models.ExternalMaps.Search;
-using GottaGo.Core.Api.Models.Maps;
-using Moq;
+using GottaGo.Core.Api.Tests.Acceptance.Models.ExternalMaps.Search;
+using GottaGo.Core.Api.Tests.Acceptance.Models.Maps;
+using Newtonsoft.Json;
+using WireMock.Matchers;
+using WireMock.RequestBuilders;
+using WireMock.ResponseBuilders;
 using Xunit;
 
-namespace GottaGo.Core.Api.Tests.Unit.Services.Foundations
+namespace GottaGo.Core.Api.Tests.Acceptance.APIs.Maps
 {
-    public partial class MapServiceTests
+    public partial class MapApiTests
     {
         [Fact]
         public async Task ShouldSearchAddressAsync()
@@ -22,8 +26,9 @@ namespace GottaGo.Core.Api.Tests.Unit.Services.Foundations
             // given
             ExternalMapSearchResponse randomExternalMapSearchResponse = CreateRandomExternalMapSearchResponse();
             ExternalMapSearchResponse retrievedExternalMapSearchResponse = randomExternalMapSearchResponse;
+            string retrievedExternalMapSearchResponseBody = JsonConvert.SerializeObject(retrievedExternalMapSearchResponse);
 
-            List<Address> expectedAddresses = randomExternalMapSearchResponse.Responses.Select(response =>
+            List<Address> expectedRandomAddresses = randomExternalMapSearchResponse.Responses.Select(response =>
                 new Address
                 {
                     Type = response.Type,
@@ -62,36 +67,26 @@ namespace GottaGo.Core.Api.Tests.Unit.Services.Foundations
                 }).ToList();
 
             AddressSearch randomAddressSearch = CreateRandomAddressSearch();
-            AddressSearch inputAddressSearch = randomAddressSearch;
 
-            var expectedExternalMapSearchParameters = new ExternalMapSearchParameters
-            {
-                Query = inputAddressSearch.Query,
-                Language = inputAddressSearch.Language,
-                CountrySet = String.Join(",", inputAddressSearch.Countries),
-                Latitude = inputAddressSearch.CurrentLocation.Latitude?.ToString(),
-                Longitude = inputAddressSearch.CurrentLocation.Longitude?.ToString(),
-
-            };
-
-            this.mapApiBrokerMock.Setup(broker =>
-                broker.GetSearchAddressAsync(It.Is(
-                    SameInformationAs(expectedExternalMapSearchParameters))))
-                        .ReturnsAsync(retrievedExternalMapSearchResponse);
+            this.wireMockServer
+                .Given(Request.Create()
+                    .WithPath("/search/address/json*")
+                    .UsingGet())
+                .RespondWith(Response.Create()
+                    .WithStatusCode(HttpStatusCode.OK)
+                    .WithBody(retrievedExternalMapSearchResponseBody));
 
             // when
-            List<Address> actualAddresses = await this.mapService.SearchAddress(inputAddressSearch);
+            List<Address> actualAddresses =
+                await this.gottaGoCoreApiBroker.GetAddressesByQueryAsync(
+                    randomAddressSearch.Query,
+                    randomAddressSearch.CurrentLocation.Latitude,
+                    randomAddressSearch.CurrentLocation.Longitude,
+                    randomAddressSearch.Language,
+                    String.Join(",", randomAddressSearch.Countries));
 
             // then
-            actualAddresses.Should().BeEquivalentTo(expectedAddresses);
-
-            this.mapApiBrokerMock.Verify(broker =>
-                broker.GetSearchAddressAsync(It.Is(
-                    SameInformationAs(expectedExternalMapSearchParameters))),
-                        Times.Once);
-
-            this.mapApiBrokerMock.VerifyNoOtherCalls();
-            this.loggingBrokerMock.VerifyNoOtherCalls();
+            actualAddresses.Should().BeEquivalentTo(expectedRandomAddresses);
         }
     }
 }
